@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Tela de Cadastro do Catalogo de Incidentes</title>
+</h:head>
+<h:body>
+	<h1>Cadastre abaixo o catalogo de serviço:</h1>
+	<h:form>
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Nome: " />
+			<p:inputText value="${catalogoMB.cat.nome}" />
+			<p:outputLabel value="Descricao: " />
+			<p:inputTextarea cols="20" rows="6"
+				value="${catalogoMB.cat.descricao}" />
+			<p:commandButton value="Salvar"
+				action="${catalogoMB.adicionarCatalogo()}" icon="ui-icon-disk"/>
+		</p:panelGrid>
+	</h:form>
+
+	<h:form>
+		<p:dataTable value="${catalogoMB.cat}" var="catalogo" border="2"
+			rows="5" paginator="true" rendered="${catalogo.size() > 0}">
+			<p:column headerText="Nome" sortBy="${catalogo.nome}">
+				<h:outputText value="${catalogo.nome}" />
+			</p:column>
+
+			<p:column headerText="Descrição" sortBy="${catalogo.descricao}">
+				<h:outputText value="${catalogo.descricao}" />
+			</p:column>
+
+		</p:dataTable>
+
+		<h:form>
+			<p:dataTable value="${catalogoMB.cat}" var="catalogo" border="2"
+				rows="5" paginator="true" rendered="${catalogo.size() != 0}">
+				<p:column headerText="Nome" sortBy="${catalogo.nome}">
+					<h:outputText value="${catalogo.nome}" />
+				</p:column>
+
+				<p:column headerText="Descrição" sortBy="${catalogo.descricao}">
+					<h:outputText value="${catalogo.descricao}" />
+				</p:column>
+				
+				
+				<p:column>
+			<p:commandButton	value="Remover" 
+									action="${catalogoMB.removerCatalogo()}"/>
+		</p:column>
+				
+			</p:dataTable>
+		</h:form>
+		
+		
+		
+		
+	</h:form>
+</h:body>
+</html>

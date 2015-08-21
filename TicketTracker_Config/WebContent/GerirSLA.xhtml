@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Tela de Cadastro de SLAs</title>
+</h:head>
+<h:body>
+	<h1>Preencha os SLA's para o serviço':</h1>
+	<h:form>
+	<p:panelGrid columns="2">
+		<p:outputLabel value="Criticidade: " />
+		<p:inputText value="${slaMB.s.criticidade}" />
+		<p:outputLabel value="Tempo de Reação: " />
+		<p:inputText value="${slaMB.s.tempoReacao}" />
+		<p:outputLabel value="Tempo de Resposta: " />
+		<p:inputText value="${slaMB.s.tempoResposta}" />
+		<p:commandButton value="Salvar" action="${slaMB.adicionarSLA()}" icon="ui-icon-disk" />
+	</p:panelGrid>
+	</h:form>
+	
+	
+	
+	<h:form>
+			<p:dataTable value="${slaMB.s}" var="sla" border="2"
+				rows="5" paginator="true" rendered="${sla.size() != 0}">
+				<p:column headerText="Criticidade" sortBy="${sla.criticidade}">
+					<h:outputText value="${sla.criticidade}" />
+				</p:column>
+
+				<p:column headerText="Tempo de Reação" sortBy="${sla.tempoReacao}">
+					<h:outputText value="${sla.tempoReacao}" />
+				</p:column>
+				
+				<p:column headerText="Tempo de Resposta" sortBy="${sla.tempoResposta}">
+					<h:outputText value="${sla.tempoResposta}" />
+				</p:column>
+			
+				
+			</p:dataTable>
+		</h:form>
+	
+	
+</h:body>
+</html>

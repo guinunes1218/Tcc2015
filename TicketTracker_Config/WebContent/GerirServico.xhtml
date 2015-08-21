@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset= UTF-8" />
+	<title>Tela de Cadastro de Serviços</title>
+</h:head>
+<h:body>
+	<h1>Preencha os serviços que serão disponibilizados:</h1>
+	<h:form>
+	<p:panelGrid columns="2">
+		<p:outputLabel value="Nome: " />
+		<p:inputText value="${servicoMB.serv.nome}" />
+		<p:outputLabel value="Descricao: " />
+		<p:inputTextarea  cols ="20" rows = "6" value = "${servicoMB.serv.descricao}"/>
+		<p:commandButton value="Salvar" action="${servicoMB.adicionarServico()}" icon="ui-icon-disk" />
+	</p:panelGrid>
+	</h:form>
+	
+	<h:form>
+			<p:dataTable value="${servicoMB.serv}" var="servico" border="2"
+				rows="5" paginator="true" rendered="${servico.size() != 0}">
+				<p:column headerText="Nome" sortBy="${servico.nome}">
+					<h:outputText value="${servico.nome}" />
+				</p:column>
+
+				<p:column headerText="Descrição" sortBy="${servico.descricao}">
+					<h:outputText value="${servico.descricao}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
+		
+		
+	
+	</h:body>
+</html>
